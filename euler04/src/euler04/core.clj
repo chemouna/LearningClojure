@@ -3,6 +3,7 @@
              [clojure.string :as s])
              (:gen-class))
 
+  ;solution #1
   (defn ispalindrome? [num]
    (let [num-str (str num)
          num-length (count num-str)
@@ -11,8 +12,6 @@
          str-right (subs num-str (- num-length num-slice-depth))]
      (= str-left (s/reverse str-right))))
 
-  ;;(ispalindrome? 1100000011)
-
   (defn nth-digit-palindrome-list [num]
    (let [lower-num (math/expt 10 (dec num))
          upper-num (math/expt 10 num)
@@ -20,8 +19,15 @@
          mult-list (for [i num-range j num-range] (* i j))]
      (filter ispalindrome? mult-list)))
 
+  ;solution #2
+ (def reverse-int [n]
+   (reverse-int n 0)
+   ([a b]
+     (if (= a 0)
+      b
+      (recur (int (/a 10.0)) (+ (* b 10) (mod a 10))))))
+
   (defn -main
    [& args]
-   (println "Started Problem 4 Calculation...")
-   (print " : ")
+   (println "Solution 1 :")
    (println (apply max (nth-digit-palindrome-list 3))))
