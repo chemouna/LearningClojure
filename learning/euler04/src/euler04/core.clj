@@ -3,7 +3,6 @@
              [clojure.string :as s])
              (:gen-class))
 
-  ;solution #1
   (defn ispalindrome? [num]
    (let [num-str (str num)
          num-length (count num-str)
@@ -12,6 +11,8 @@
          str-right (subs num-str (- num-length num-slice-depth))]
      (= str-left (s/reverse str-right))))
 
+  ;;(ispalindrome? 1100000011)
+
   (defn nth-digit-palindrome-list [num]
    (let [lower-num (math/expt 10 (dec num))
          upper-num (math/expt 10 num)
@@ -19,18 +20,8 @@
          mult-list (for [i num-range j num-range] (* i j))]
      (filter ispalindrome? mult-list)))
 
-  ;solution #2
- (def reverse-int [n]
-   (reverse-int n 0)
-   ([a b]
-     (if (= a 0)
-      b
-      (recur (int (/a 10.0)) (+ (* b 10) (mod a 10))))))
-
-  ; https://github.com/juliengrenier/clojure-euler/blob/master/src/euler/euler_04.clj
-  ;https://github.com/zolrath/Project-Clojuler/blob/master/src/euler/04.clj
-  
   (defn -main
    [& args]
-   (println "Solution 1 :")
+   (println "Started Problem 4 Calculation...")
+   (print " : ")
    (println (apply max (nth-digit-palindrome-list 3))))
