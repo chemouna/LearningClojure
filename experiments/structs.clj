@@ -1,4 +1,5 @@
-(ns experiments.structs)
+(ns experiments.structs
+  (:require [clojure.core :as core]))
 
 (defstruct book :name :category)
 
@@ -6,4 +7,7 @@
 
 (type book)
 
-(def bookMoreInfo (struct-map :author "fogus"))
+(def bookMoreInfo (core/struct-map book :author "fogus"))
+
+bookMoreInfo
+

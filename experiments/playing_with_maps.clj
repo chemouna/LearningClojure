@@ -19,3 +19,10 @@
 
 (assoc-in teams ["Man. United" :points] 1)
 
+(-> teams
+    (assoc-in ["Man. City" :points] 300)
+    (assoc-in ["Man. City" :rd] 100))
+
+(dissoc teams "Man. United")
+
+teams
