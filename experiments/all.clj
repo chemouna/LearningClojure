@@ -46,5 +46,24 @@
        (map (partial apply hash-map)
             pairs))
 
+;; auto curry macro
+(defmacro defc
+  [identifier bindings & body]
+  (let [n# (count bindings)]
+    `(def ~identifier
+       (fn [& args#]
+         (if (< (count args#) ~n#)
+           (apply partial ~identifier args#)
+           (let [myfn# (fn ~bindings ~@body)]
+             (apply myfn# args#)))))))
 
+(defc product-four-numbers
+  [n1 n2 n3 n4]
+  (* n1 n2 n3 n4))
+
+((product-four-numbers 2) 3)
+
+((product-four-numbers 2) 3 4)
+
+((product-four-numbers 2) 3 4 5)
 
