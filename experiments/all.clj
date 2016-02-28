@@ -15,5 +15,22 @@
 ((juxt filter remove) even? [1 2 3 4 5 6 7])
 
 
+;; exploring juxt
+((juxt :a :d) {:a 1 :b 2 :c 3 :d 4})
+
+((juxt second count) "Clojure Is Awesome")
+
+((juxt take drop) 3 [1 2 3 4 5 6])
+
+
+(defn juxt-partition
+  "Takes a predicate function, a collection and one ore more
+   (fn predicate coll) functions that will be applied to the given collection.
+   Example: (juxt-partition odd? [1 2 3 4] filter remove) => [(1 3) (2 4)]."
+  [pred coll & fns]
+  ((apply juxt (map #(partial % pred) fns)) coll))
+
+(juxt-partition even? [1 2 3 4 5 6] filter remove)
+
 
 
