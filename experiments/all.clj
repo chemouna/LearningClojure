@@ -32,5 +32,19 @@
 
 (juxt-partition even? [1 2 3 4 5 6] filter remove)
 
+((juxt inc dec) 2)
+
+;; Using higher order functions
+(def pairs [[:one 1] [:two 2] [:three 3]])
+(into {} pairs)
+
+(def pairs2 [[:one 1] [:two 2] [:three 3] [:rest 4] [:rest 5] [:rest 6]])
+(into {} pairs2)
+
+(apply merge-with
+       (comp vec flatten vector)
+       (map (partial apply hash-map)
+            pairs))
+
 
 
