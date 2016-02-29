@@ -44,7 +44,7 @@
 (apply merge-with
        (comp vec flatten vector)
        (map (partial apply hash-map)
-            pairs))
+             pairs))
 
 ;; auto curry macro
 (defmacro defc
@@ -67,3 +67,6 @@
 
 ((product-four-numbers 2) 3 4 5)
 
+
+;; apply a list of functions to an argument, generating a list of the results
+((juxt inc dec (partial * 3)) 4)
