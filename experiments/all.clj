@@ -70,3 +70,30 @@
 
 ;; apply a list of functions to an argument, generating a list of the results
 ((juxt inc dec (partial * 3)) 4)
+
+;;
+(take 15 (cycle [1 2 3 4]))
+
+
+;; recursion
+(def factorial
+  (fn [n]
+    (loop [cnt n acc 1]
+      (if (zero? cnt)
+        acc
+        (recur (dec cnt) (* acc cnt))
+        ))))
+
+(println (factorial 5))
+
+
+(defn generateFibs
+  []
+  (loop [res [0 1]]
+    (if (>= (count res) 20)
+      res
+      (recur (conj res (+' (inc (last res)) (dec (last (butlast res)))))))))
+
+(println (generateFibs))
+
+(conj [1 2] 3)
