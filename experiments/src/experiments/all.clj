@@ -1,3 +1,4 @@
+
 (ns experiments.all)
 
 ;;  split a list into 2 sublists - elements that passed a predicate and elements that failed a predicate. 
