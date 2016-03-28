@@ -8,7 +8,7 @@
 (defmacro wait-futures [& args]
   `(doseq [f# (futures ~@args)] @f#))
 
-(defn demoAtom [xs]
+(defn demo-atom [xs]
   (wait-futures 1 (swap! xs (fn [v]
                             (Thread/sleep 250)
                             (println "trying 4")
@@ -18,4 +18,4 @@
                           (println "trying 5")
                           (conj v 5)))))
 
-(demoAtom(atom #{1 2 3}))
+(demo-atom(atom #{1 2 3}))
