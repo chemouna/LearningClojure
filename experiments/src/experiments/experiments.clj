@@ -64,4 +64,29 @@
 ;; Get 2nd to last element from a list
 ((comp second reverse) '("a" 2 7 "b"))
 
+;; flatten
+;; Useful snippet: "merge" two or more vectors with `(comp vec flatten vector)`
+(let [a [{:a "hi"} {:b "hey"}]
+      b [{:c "yo"} {:d "hiya"}]
+      c {:e ["hola" "bonjour"]}]
+  ((comp vec flatten vector) a b c))
+
+;; To only flatten one level, you can use (mapcat identity coll)
+(flatten [[[1]] [[2 3]]])
+
+(mapcat identity [[[1]] [[2 3]]])
+
+;;juxt
+(into {} (map (juxt identity (concat "@" name))  [:a :b :c :d]))
+
+
+;; using HOFs
+(def pairs [[:one 1] [:two 2] [:three 3] [:rest 4] [:rest 5] [:rest 6]])
+
+(apply merge-with
+       (comp vec flatten)
+       (map (partial apply hash-map)
+            pairs))
+
+
 
