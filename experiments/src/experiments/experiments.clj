@@ -111,6 +111,18 @@
 
 (map-indexed #(hash-map (str %1) %2) [:foo :bar :baz])
 
+(apply hash-map (mapcat #(.split % "=") (.split "foo=1&bar=2" "&")))
+
+(->> [[:a 1] [:b 2]] (apply concat) (apply hash-map))
+
+(let [x (transient (hash-map))]
+  (dotimes [n 100] (assoc! x n n))
+  (persistent! x))
+
+(apply merge-with + (map #(hash-map % 1) [:a :a :b :c :d]))
+
+(apply merge (map (fn [[k v]] (hash-map k (+ v 3))) {:k 3, :k2 4}))
+
 
 
 ;; Using HOFs
