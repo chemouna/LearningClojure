@@ -129,7 +129,7 @@
 (def pairs [[:one 1] [:two 2] [:three 3] [:rest 4] [:rest 5] [:rest 6]])
 
 (apply merge-with
-       (comp vec flatten)
+       (comp vec flatten vector)
        (map (partial apply hash-map)
             pairs))
 
