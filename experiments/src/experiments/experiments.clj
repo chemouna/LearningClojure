@@ -123,7 +123,12 @@
 
 (apply merge (map (fn [[k v]] (hash-map k (+ v 3))) {:k 3, :k2 4}))
 
-
+;;
+(reduce (fn [result {:keys [name employer]}] (update-in result [employer] conj name)) {}
+        [{:name "jay fields", :current-city "new york", :employer "drw.com"}
+         {:name "john dydo", :current-city "new york", :employer "drw.com"}
+         {:name "mike ward", :current-city "chicago", :employer "drw.com"}
+         {:name "chris george", :current-city "new york", :employer "thoughtworks.com"}])
 
 ;; Using HOFs
 (def pairs [[:one 1] [:two 2] [:three 3] [:rest 4] [:rest 5] [:rest 6]])
@@ -132,6 +137,11 @@
        (comp vec flatten vector)
        (map (partial apply hash-map)
             pairs))
+
+
+;; clojure.set/join
+
+
 
 
 
