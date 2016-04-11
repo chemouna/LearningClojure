@@ -76,9 +76,19 @@
 
 (mapcat identity [[[1]] [[2 3]]])
 
-;;juxt
+;; juxt
 (into {} (map (juxt identity (concat "@" name))  [:a :b :c :d]))
 
+;; tree-seq
+(tree-seq seq? identity '((1 2 (3)) (4)))
+
+(tree-seq map? #(interleave (keys %) (vals %)) {:a 1 :b {:c 3 :d 4 :e {:f 6 :g 7}}})
+
+;; interleave
+(defn lazy-interleave [v1 v2]
+  (when (and (seq v1) (seq v2))
+    (lazy-cat [(first v1) (first v2)]
+              (lazy-interleave (rest v1) (rest v2)))))
 
 ;; using HOFs
 (def pairs [[:one 1] [:two 2] [:three 3] [:rest 4] [:rest 5] [:rest 6]])
