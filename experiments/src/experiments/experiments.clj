@@ -90,7 +90,30 @@
     (lazy-cat [(first v1) (first v2)]
               (lazy-interleave (rest v1) (rest v2)))))
 
-;; using HOFs
+;; hash-map
+(map #(hash-map % 0) (seq "abcdefgh"))
+
+(apply hash-map (.split "a 1 b 2 c 3" " "))
+
+;;
+(def csv1 [["01/01/2012" 1 2 3 4]["06/15/2012" 38 24 101]])
+
+(map #(hash-map (keyword (first %1)) (vec (rest %1))) csv1)
+
+;; merge the list of maps into a single map
+(apply merge '({"01/01/2012" [1 2 3 4]} {"06/15/2012" [38 24 101]}))
+
+(let [val 42] (apply hash-map [[:key val] [:key val]]))
+
+(apply hash-map (apply concat {:a 1, :b 2}))
+
+(into {} (map #(apply hash-map %) [[:foo 1] [:bar 2]]))
+
+(map-indexed #(hash-map (str %1) %2) [:foo :bar :baz])
+
+
+
+;; Using HOFs
 (def pairs [[:one 1] [:two 2] [:three 3] [:rest 4] [:rest 5] [:rest 6]])
 
 (apply merge-with
