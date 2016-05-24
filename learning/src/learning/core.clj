@@ -14,3 +14,10 @@
 ;  (print " : ")
 ;  (println (isPalindrome? 9994))
 ;  )
+
+
+;; takes a list and a nb and adds it to each element 
+(defn list+ [lst a]
+  (map #(+ % a) lst))
+
+(list+ '(1 2 3) 10)
