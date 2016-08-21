@@ -14,4 +14,8 @@
 (split-with-size [1 3 2 2] '(a b c d e f g h l m))
 
 
+;; update-in
+(def m {:a 1 :b 1 :c 2 :d 3})
+(update-in m [:a] inc)
+
 
