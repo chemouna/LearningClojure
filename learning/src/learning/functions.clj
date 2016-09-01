@@ -52,3 +52,16 @@
   (map function sequence))
 
 (keyworded-map2 :function #(+ % 5) :sequence [1 2 3])
+
+(assoc {} :test "hello" {:test2 "hi"})
+
+(dissoc {:test1 "test1", :test2 "test2"} :test1)
+
+;; reimplementing split-at (in #t way than clojure core) -> hopefully more efficient
+;(defn slit-at
+;  [n coll)
+  ;; TODO handle case n is neg
+;  (let loop )
+;  )
+
+
