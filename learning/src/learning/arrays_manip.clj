@@ -10,7 +10,6 @@
     (into [] arr)))
 
 
-;; using transient
 
 (defn accum-array-t
   [acc-fn init size assoc-list]
@@ -19,8 +18,6 @@
                 (assoc! arr index (acc-fn (nth arr index) a)))]
     (dorun (map accum assoc-list))
     (persistent! arr)))
-
-;; (accum-array (+) 0 (1,2) [(1,2), (1,6)])
 
 
 (defn disjunct [a b] (or a b))
@@ -37,6 +34,41 @@
  (zip [0 1 4 1 3 6 3 9 3] (repeat 1)))
 
 
+(defn minfree (comp search checklist))
+
+(minfree [0 1 2 3 5 6 2])
 
 
+;; comp
+(def neg-quotient (comp - /))
+(neg-quotient 8 3)
 
+(def concat-and-reverse (comp (partial apply str) reverse str))
+(concat-and-reverse "hello" "sir")
+
+(map (comp - (partial + 3) (partial * 2)) [1 2 3 4])
+
+(filter (comp not zero?) [0 1 0 2 0 3 0 4])
+
+(def countif (comp count filter))
+(countif even? [1 2 3 4 5 6 7])
+
+((comp second reverse) '("a" 2 7 "b"))
+
+(#((apply comp first (repeat %2 rest)) %1) [1 2 3 4 5 6] 3)
+
+
+;; list*
+(list 1 [2 3])
+(list* 1 [2 3])
+
+;; apply
+
+
+;; partial
+
+
+;; defstruct
+(defstruct person :name :age :height)
+(struct person "george" 22 115)
+(:name person)
