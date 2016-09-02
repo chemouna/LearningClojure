@@ -65,3 +65,13 @@
 ;  )
 
 
+;; map
+(map #(vector (first %) (* 2 (second %))) {:a 1 :b 2 :c 3})
+
+(map {2 "two" 3 "three"} [5 3 2])
+
+(filter identity (map {2 "two" 3 "three"} [5 3 2]))
+
+
+;; doSeq
+
