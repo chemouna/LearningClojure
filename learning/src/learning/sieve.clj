@@ -32,4 +32,3 @@
         (filter #(aget refs %) (range 2 n)))))
 
 (time (primes-to2 60))
-x
