@@ -15,5 +15,21 @@
                                        (range 2 (inc root)))))
         (filter #(not (aget cmpsts %)) (range 2 (inc n))))))
 
-(primes-to 60)
+(time (primes-to 60))
 
+
+;; Solution #2 using list comprehensions
+(defn primes-to2
+  "Returns a lazy sequence of prime numbers less than n"
+  [n]
+  (let [refs (boolean-array (+ n 1) true)
+        root (int (math/sqrt n))]
+    (do (doseq [i (range 2 n)
+                :while (<= i n)
+                :when  (aget refs i)]
+          (doseq [j (range (* i i) n i)]
+            (aset refs j false)))
+        (filter #(aget refs %) (range 2 n)))))
+
+(time (primes-to2 60))
+x
