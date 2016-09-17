@@ -39,4 +39,21 @@
 
 (try-catch-default2 (load-default-value) (/ 1 0))
 
+;; now let's make it accomodate for code block operations
+(defmacro try-catch-default3
+  [default-value & operations]
+  `(try
+     ~@operations
+     catch Exception x#
+     (let [default# ~default-value]
+       (println "Error occured : " x# ", defaults to : " default#)
+       default#)
+     ))
+
+(macroexpand-1
+ '(try-catch-default3 (load-default-value)
+              (println "first op")
+              (println "second op")
+              (/ 1 0)))
+
 
