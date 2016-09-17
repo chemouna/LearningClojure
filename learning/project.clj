@@ -5,5 +5,6 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/math.numeric-tower "0.0.4"]
-                 [com.taoensso/timbre "4.7.4"]]
+                 [com.taoensso/timbre "4.7.4"]
+                 [clj-time "0.12.0"]]
   :main learning.core)
