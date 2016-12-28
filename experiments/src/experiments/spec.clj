@@ -39,4 +39,7 @@
 
 (s/explain-str ::name-or-id :foo)
 
+;; (take 3 (s/exercise boolean?))
+
+
 
