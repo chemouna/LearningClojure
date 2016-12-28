@@ -34,3 +34,12 @@
 
 ;; disj
 (disj {:k1 1 :k2 2 :k3 3} :k2)
+
+
+;; shuffle
+
+
+;; repeatedly
+(repeatedly 10 (fn [] [:div]))
+
+

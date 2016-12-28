@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.9.0-alpha12"]
                  [org.clojure/math.numeric-tower "0.0.4"]
                  [org.clojure/core.match "0.3.0-alpha4"]
-                 [clj-time "0.12.0"]]
+                 [clj-time "0.12.0"]
+                 [uncomplicate/fluokitten "0.5.1"]]
   :main ^:skip-aot experiments.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

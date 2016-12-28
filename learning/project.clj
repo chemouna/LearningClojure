@@ -6,5 +6,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/math.numeric-tower "0.0.4"]
                  [com.taoensso/timbre "4.7.4"]
-                 [clj-time "0.12.0"]]
+                 [clj-time "0.12.0"]
+                 [org.clojure/core.async "0.2.395"]
+                 [uncomplicate/fluokitten "0.5.1"]]
   :main learning.core)
