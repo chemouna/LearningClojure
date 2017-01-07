@@ -25,7 +25,6 @@
 ;; juxt
 
 
-
 ;; partial
 
 
@@ -41,5 +40,7 @@
 
 ;; repeatedly
 (repeatedly 10 (fn [] [:div]))
+
+;; iterate
 
 

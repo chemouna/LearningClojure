@@ -13,7 +13,13 @@
   ([a b] (lazy-seq (cons a (fib-seq-seq b (+ a b))))))
 
 ;; with lazy-cat
-;; (defn fib-seq-cat
-;;   [a b]
-;;   (lazy-cat ))
+(def fib-seq-cat
+  (lazy-cat [0 1] (map + (rest fib-seq-cat) fib-seq-cat)))
+
+(take 5 fib-seq-cat)
+
+;; with iterate
+(def fib-seq-iterate
+  (map first (iterate (fn [[a b]] [b (+ a b)]) [0 1])))
+
 
