@@ -6,3 +6,10 @@
   (recur (rest coll) (str result (first coll)) ", "))
 
 ; https://clojurebridge.github.io/community-docs/docs/clojure/recur/
+
+(def a1 (double-array '(1.0 2.0 3.0 4.0)))
+
+(def a2 '(int-array '(9 8 7 6)))
+
+
+

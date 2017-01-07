@@ -31,7 +31,8 @@
                                  (fn [{:keys [secret guess]}]
                                    (= (count secret) (count guess)))))
 
-(s/fdef score :args ::secret-and-guess
+(s/fdef score
+        :args ::secret-and-guess
         :ret (s/keys :req [::exact-matches ::loose-matches])
         :fn (fn [{{secret :secret} :args ret :ret}]
               (<= 0 (apply + (vals ret)) (count secret))))
@@ -48,7 +49,7 @@
 (s/exercise-fn `score)
 
 (s/exercise-fn `exact-matches 10 (s/get-spec `match-count))
-(stest/check-fn exact-matches (s/get-spec `match-count))
+(stest/check-fn exact-matches (s/get-spoec `match-count))
 
 (stest/instrument `exact-matches)
 (s/exercise-fn `score)
