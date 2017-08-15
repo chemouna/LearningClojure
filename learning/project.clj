@@ -10,3 +10,4 @@
                  [org.clojure/core.async "0.2.395"]
                  [uncomplicate/fluokitten "0.5.1"]]
   :main learning.core)
+ 

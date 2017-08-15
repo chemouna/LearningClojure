@@ -14,3 +14,5 @@
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
              :dev {:dependencies [[org.clojure/test.check "0.9.0"]]}})
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+  (setq exec-path (append exec-path '("/usr/local/bin")))
