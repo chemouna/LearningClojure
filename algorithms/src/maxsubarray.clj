@@ -28,4 +28,7 @@
 (def large-property (prop/for-all
                              [l (gen/not-empty  (gen/list gen/int))]
                              (>= (kadane l) (reduce max l))))
+quickcheck_macros = "0.2"
+quickcheck_macros = "0.2"
+
 
