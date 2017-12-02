@@ -3,7 +3,6 @@
 
 (require '[clojure.string :as str])
 
-
 ;; a: street, D: driveway, B: bus stop, S: side street, -: other
 ;; each char describes nexy 5 meters
 ;; in front of <=> same index , obj i before obj j if i < j, obj i after obj j if i > j
