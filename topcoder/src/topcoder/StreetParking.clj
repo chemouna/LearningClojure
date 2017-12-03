@@ -21,23 +21,25 @@
 ;; 7.	It is not 5 meters after a side-street. -> index(p) != index(S) + 1
 
 ;; Examples:
+
 ;; ---B--S-D--S--
 ;; P   P    P   P  -> 4 
 
 (defn freeParks
   "return total number of possible parking spaces"
   [st]
-  (letfn [(c1 [x] (not= (str/index-of st x) (= x "D")))
-          (c2 [x] (not= (str/index-of st x) (= x "B")))
-          (c3 [x] (not= (str/index-of st x) (- (str/index-of st "B") 1)))
-          (c4 [x] (not= (str/index-of st x) (- (str/index-of st "B") 2)))
-          (c5 [x] (not= (str/index-of st x) (= x "S")))
-          (c6 [x] (not= (str/index-of st x) (- (str/index-of st "S") 1)))
-          (c7 [x] (not= (str/index-of st x) (+ (str/index-of st "S") 1)))
-          ]
-  (count (filter true? (map (every-pred c1 c2 c3 c4 c5 c6 c7) st)))))
+  (count (filter true? (map-indexed
+                        #(and (not= %2 \D)
+                              (not= %2 \B)
+                              (not= (nth st (min (- (count st) 1) (+ %1 1))) \B)
+                              (not= (nth st (min (- (count st) 1) (+ %1 2))) \B)
+                              (not= %2 \S)
+                              (not= (nth st (min (- (count st) 1) (+ %1 1))) \S)
+                              (not= (nth st (max 0 (- %1 1))) \S))
+                        (seq st)))))
 
 (freeParks "---B--S-D--S--")
 (freeParks "DDBDDBDDBDD")
 (freeParks "--S--S--S--S--")
 (freeParks "SSD-B---BD-DDSB-----S-S--------S-B----BSB-S--B-S-D")
+

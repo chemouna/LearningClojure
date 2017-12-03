@@ -1,3 +1,4 @@
+
 (ns everypredfns)
 
 (require '[clojure.string :as str])
@@ -24,28 +25,13 @@
 ;; every argument is bigger then 5 and smaller then 10 so the form returns false.
 ((some-fn #(< % 5) #(> % 10)) 6 15 7 8)
 
-;; other examples
 
-((every-pred number? odd?) 3 9 11)
+;; I want to apply two (or more) predicates to a single value. For example, say I want to test if a value is a positive integer:
 
+(defn posint? [n]
+  (and (integer? n) (pos? n)))
 
-(defn lower-case? [w] (= w (.toLowerCase w)))
+;; That does it, but what if I want to compose the predicates applied
+(defn posint? [n]
+((every-pred integer? pos?) n))
 
-(defn palindrome? [w] (= (seq w) (reverse w)))
-
-((every-pred string? lower-case? palindrome?) "racecar")
-
-
-;; testing if is a file and has extension rq
-
-(defn is-file?
-  [file]
-  (.isFile file))
-
-(defn has-suffix?
-  [suffix file]
-  (string/ends-with? (.getName file) suffix))
-
-(def query-file?
-  "Predicate testing if file is named *.rq."
-  (every-pred is-file? (partial has-suffix? ".rq")))
