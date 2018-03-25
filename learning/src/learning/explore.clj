@@ -34,9 +34,10 @@
 
 (total-of (range 1 5))
 
-;; defining a recursive function
-
 ;; using iterate
+(def powers-of-two
+  (iterate (partial * 2) 1))
+
+(nth powers-of-two 10)
 
 
-;; define a function that is incomplete that can be completed afterwards 
