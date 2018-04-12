@@ -1,4 +1,3 @@
-
 (ns learning2.apis
   (:use [clojure.tools.trace :as trace]))
 
@@ -53,7 +52,7 @@
 
 ;; letfn
 
-;; letfn doesn't accept defining both a var and a function at the same time 
+;; letfn doesn't accept defining both a var and a function at the same time
 (comment "
 (letfn [(x 2)
         (twice [y]
@@ -68,9 +67,16 @@
     (println (twice 4))))
 
 ;; for
+;; 3-tumbler combination padlock
+(count (for [tumbler-1 (range 10)
+             tumbler-2 (range 10)
+             tumbler-3 (range 10)
+             :when (or (= tumbler-1 tumbler-2)
+                       (= tumbler-2 tumbler-3)
+                       (= tumbler-3 tumbler-1))]
+         [tumbler-1 tumbler-2 tumbler-3]))
 
-;; dosync
-
-;; doall
-
-
+;; doseq
+(doseq [x [-1 0 1]
+        y [1 2 3]]
+  (prn (* x y)))
